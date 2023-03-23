@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+
+  <model name="realsense_d435">
+
+    <link name="base_link">
+
+      <inertial>
+        <mass>0.0615752</mass>
+        <inertia>
+          <ixx>9.108e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.51e-06</iyy>
+          <iyz>0</iyz>
+          <izz>8.931e-05</izz>
+        </inertia>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>meshes/realsense.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name= "visual">
+        <geometry>
+          <mesh>
+            <uri>meshes/realsense.dae</uri>
+            <submesh>
+              <name>RealSense</name>
+              <center>false</center>
+            </submesh>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/RealSense_Albedo.png</albedo_map>
+              <normal_map>materials/textures/RealSense_Normal.png</normal_map>
+              <metalness_map>materials/textures/RealSense_Metalness.png</metalness_map>
+              <roughness_map>materials/textures/RealSense_Roughness.png</roughness_map>
+            </metal>
+          </pbr>
+          <!-- fallback to script if no PBR support-->
+          <script>
+            <uri>materials/scripts/</uri>
+            <uri>materials/textures/</uri>
+            <name>UrbanTile/RealSense_Diffuse</name>
+          </script>
+        </material>
+      </visual>
+
+      <sensor name="imu_sensor" type="imu">
+          <always_on>1</always_on>
+          <update_rate>200</update_rate>
+          <imu>
+              <angular_velocity>
+                  <x>
+                      <noise type="gaussian">
+                          <mean>0</mean>
+                          <stddev>0.009</stddev>
+                          <bias_mean>0.00075</bias_mean>
+                          <bias_stddev>0.005</bias_stddev>
+                          <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+                          <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
+                          <precision>0.00025</precision>
+                      </noise>
+                  </x>
+                  <y>
+                      <noise type="gaussian">
+                          <mean>0</mean>
+                          <stddev>0.009</stddev>
+                          <bias_mean>0.00075</bias_mean>
+                          <bias_stddev>0.005</bias_stddev>
+                          <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+                          <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
+                          <precision>0.00025</precision>
+                      </noise>
+                  </y>
+                  <z>
+                      <noise type="gaussian">
+                          <mean>0</mean>
+                          <stddev>0.009</stddev>
+                          <bias_mean>0.00075</bias_mean>
+                          <bias_stddev>0.005</bias_stddev>
+                          <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+                          <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
+                          <precision>0.00025</precision>
+                      </noise>
+                  </z>
+              </angular_velocity>
+              <linear_acceleration>
+                  <x>
+                      <noise type="gaussian">
+                          <mean>0</mean>
+                          <stddev>0.021</stddev>
+                          <bias_mean>0.05</bias_mean>
+                          <bias_stddev>0.0075</bias_stddev>
+                          <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+                          <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
+                          <precision>0.005</precision>
+                      </noise>
+                  </x>
+                  <y>
+                      <noise type="gaussian">
+                          <mean>0</mean>
+                          <stddev>0.021</stddev>
+                          <bias_mean>0.05</bias_mean>
+                          <bias_stddev>0.0075</bias_stddev>
+                          <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+                          <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
+                          <precision>0.005</precision>
+                      </noise>
+                  </y>
+                  <z>
+                      <noise type="gaussian">
+                          <mean>0</mean>
+                          <stddev>0.021</stddev>
+                          <bias_mean>0.05</bias_mean>
+                          <bias_stddev>0.0075</bias_stddev>
+                          <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+                          <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
+                          <precision>0.005</precision>
+                      </noise>
+                  </z>
+              </linear_acceleration>
+          </imu>
+      </sensor>
+
+      </sensor>
+      <sensor name="monocular" type="camera">
+          <pose>0.180 0 -0.025 0 0.785398 0</pose>
+          <always_on>1</always_on>
+          <update_rate>20</update_rate>
+          <visualize>true</visualize>
+          <camera name="monocular">
+              <horizontal_fov>2.0944</horizontal_fov>
+              <lens>
+                  <intrinsics>
+                      <fx>1108.952913</fx> <!--Need to recompute-->
+                      <fy>1110.658360</fy>
+                      <cx>729.533992</cx>
+                      <cy>544.985715</cy>
+                      <s>1</s>
+                  </intrinsics>
+              </lens>
+              <distortion>
+                  <k1>0.0</k1>
+                  <k2>0.0</k2>
+                  <k3>0.0</k3>
+                  <p1>0.0</p1>
+                  <p2>0.0</p2>
+                  <center>0.5 0.5</center>
+              </distortion>
+              <image>
+                  <width>640</width>
+                  <height>480</height>
+                  <format>L8</format> <!-- previous format was R8G8B8 for RGB changing to greyscale images-->
+              </image>
+              <clip>
+                  <near>0.01</near>
+                  <far>100.0</far>
+              </clip>
+              <noise>
+                  <type>gaussian</type>
+                  <mean>0</mean>
+                  <stddev>0.007</stddev>
+              </noise>
+          </camera>
+      </sensor>
+
+      <sensor name="depth" type="depth_camera">
+          <update_rate>20</update_rate>
+          <pose>0.180 0 -0.025 0 0 0</pose>
+          <!-- <topic>depth_camera</topic> -->
+          <camera name="depth">
+              <horizontal_fov>2.09</horizontal_fov>
+              <!-- <horizontal_fov>2.09</horizontal_fov> -->
+              <image>
+                  <width>640</width>
+                  <height>480</height>
+                  <format>R_FLOAT16</format> <!--Before it was R_FLOAT32 but according to docs https://www.intelrealsense.com/wp-content/uploads/2022/11/Intel-RealSense-D400-Series-Datasheet-November-2022.pdf page 77 it should be 16bits-->
+              </image>
+              <clip>
+                  <near>0.28</near> <!--According to specs https://www.intelrealsense.com/depth-camera-d435/-->
+                  <far>100.0</far>
+              </clip>
+              <noise>
+                  <type>gaussian</type>
+                  <mean>0</mean>
+                  <stddev>0.00000000000000000001</stddev>
+              </noise>
+          </camera>
+      </sensor>
+
+      <sensor name="rgbd_sensor" type="rgbd_camera">
+        <update_rate>60</update_rate>
+        <camera name="rgbd_sensor">
+          <horizontal_fov>1.0472</horizontal_fov>
+          <lens>
+            <intrinsics>
+              <!-- fx = fy = width / ( 2 * tan (hfov / 2 ) ) -->
+              <fx>554.25469</fx>
+              <fy>554.25469</fy>
+              <!-- cx = ( width + 1 ) / 2 -->
+              <cx>320.5</cx>
+              <!-- cy = ( height + 1 ) / 2 -->
+              <cy>240.5</cy>
+              <s>0</s>
+            </intrinsics>
+          </lens>
+          <distortion>
+            <k1>0.0</k1>
+            <k2>0.0</k2>
+            <k3>0.0</k3>
+            <p1>0.0</p1>
+            <p2>0.0</p2>
+            <center>0.5 0.5</center>
+          </distortion>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.01</near>
+            <far>100.0</far>
+          </clip>
+          <depth_camera>
+            <clip>
+              <near>0.28</near>
+              <far>100.0</far>
+            </clip>
+          </depth_camera>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+      </sensor>
+
+    </link>
+
+  </model>
+  
+</sdf>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='ASCII'?>
 <sdf version='1.7'>
-  <world name='world_demo'>
+  <world name='warehouse'>
     <gravity>0 0 -9.8</gravity>
     <physics type='ode'>
       <max_step_size>0.01</max_step_size>
@@ -129,16 +129,19 @@
               <property key="state" type="string">docked_collapsed</property>
           </ignition-gui>
       </plugin>
+
+      <!-- Teleop-->
       <plugin filename="Teleop" name="Teleop">
-          <ignition-gui>
-              <property key="x" type="double">0</property>
-              <property key="y" type="double">0</property>
-              <property key="width" type="double">400</property>
-              <property key="height" type="double">900</property>
-              <property key="state" type="string">docked</property>
-          </ignition-gui>
-          <topic>/model/rmf_owl/cmd_vel</topic>
+        <ignition-gui>
+          <property key="x" type="double">0</property>
+          <property key="y" type="double">0</property>
+          <property key="width" type="double">400</property>
+          <property key="height" type="double">900</property>
+          <property key="state" type="string">docked</property>
+        </ignition-gui>
+      <topic>/model/rmf_owl/cmd_vel</topic>
       </plugin>
+
     </gui>
 
     <scene>
@@ -178,24 +181,6 @@
       </uri>
       <name>warehouse</name>
       <pose>0 0 -0.09 0 0 0</pose>
-    </include>
-
-    <!-- Tugbot -->
-
-    <include>
-      <uri>
-        https://fuel.ignitionrobotics.org/1.0/MovAi/models/Tugbot-charging-station
-      </uri>
-      <name>charging_station</name>
-      <pose>14.7 -10.6 -0.04 0 0 0</pose>
-    </include>
-
-    <include>
-      <uri>
-        https://fuel.ignitionrobotics.org/1.0/MovAi/models/Tugbot
-      </uri>
-      <name>tugbot</name>
-      <pose>13.9 -10.6 0.1 0 0 0</pose>
     </include>
 
     <!-- Carts -->

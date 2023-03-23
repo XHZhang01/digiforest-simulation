@@ -1,10 +1,10 @@
 <launch>
     <param name="use_sim_time" value="true" />
     
-    <arg name="resource_dir" default="$(find digiforest_simulation)/resources/worlds" />
+    <arg name="resource_dir" default="$(find digiforest_simulation)/resources/worlds:$(find digiforest_simulation)/resources/models" />
     <arg name="verbosity" default="4"/>
     <arg name="robot_name" default="rmf_owl"/>
-    <arg name="world" default="forest"/>
+    <arg name="world" default="warehouse"/>
 
 
     <include file="$(find ros_ign_gazebo)/launch/ign_gazebo.launch">

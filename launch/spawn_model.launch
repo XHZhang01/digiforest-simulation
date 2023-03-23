@@ -1,0 +1,38 @@
+<launch>
+    <param name="use_sim_time" value="true" />
+
+    <arg name="resource_dir" default="$(find digiforest_simulation)/resources" />
+    <arg name="verbosity" default="4" />
+    <arg name="model_name" default="realsense_d435" /> # m100 rmf_owl
+    <arg name="model_type" default="realsense_d435" />
+    <arg name="world_name" default="empty_world" />
+    <arg name="allow_renaming" default="true" />
+    # allows your given name to be overwritten on the spawned model
+    <arg name="x" default="0.0" />
+    <arg name="y" default="0.0" />
+    <arg name="z" default="0.5" />
+    <arg name="R" default="0.0" />
+    <arg name="P" default="0.0" />
+    <arg name="Y" default="0.0" />
+    <arg name="model_file" default="$(find digiforest_simulation)/resources/models/$(arg model_type)/test_model.sdf" />
+
+
+    <node pkg="ros_ign_gazebo" type="create" name="spawn_model" args="
+            -world $(arg world_name)
+            -name $(arg model_name)
+            -allow_renaming $(arg allow_renaming)
+            -file $(arg model_file)
+            -x $(arg x) -y $(arg y) -z $(arg z)
+            -R $(arg R) -P $(arg P) -Y $(arg Y)
+            ">
+        <env name="IGN_GAZEBO_MODEL_PATH" value="$(arg resource_dir)" />
+        <env name="IGN_GAZEBO_RESOURCE_PATH" value="$(arg resource_dir)" />
+    </node>
+
+    <include file="$(find digiforest_simulation)/launch/test_topics.launch">
+        <arg name="model_name" value="$(arg model_name)" />
+        <arg name="model_type" value="$(arg model_type)" />
+        <arg name="world_name" value="$(arg world_name)" />
+    </include>
+
+</launch>

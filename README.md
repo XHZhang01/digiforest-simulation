@@ -41,3 +41,7 @@ angular:
   y: 0.0
   z: 0.2"
 ```
+
+
+6. Teleop in the GUI of Ignition Gazebo can be used to control the robot
+![teleop](https://user-images.githubusercontent.com/44289986/209318521-1e77c7ae-185c-43e4-850b-338ed52fc0ca.png)

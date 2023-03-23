@@ -4,7 +4,7 @@
     ign topic -e -t /lidar
 -->
 <sdf version="1.8">
-  <world name="empty_world">
+  <world name="trees">
     <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
@@ -137,19 +137,6 @@
           <property type="string" key="state">docked</property>
         </ignition-gui>
       </plugin>
-
-      <!-- Teleop-->
-      <plugin filename="Teleop" name="Teleop">
-        <ignition-gui>
-          <property key="x" type="double">0</property>
-          <property key="y" type="double">0</property>
-          <property key="width" type="double">400</property>
-          <property key="height" type="double">900</property>
-          <property key="state" type="string">docked</property>
-        </ignition-gui>
-      <topic>/model/rmf_owl/cmd_vel</topic>
-      </plugin>
-
     </gui>
 
     <light type="directional" name="sun">
@@ -191,6 +178,60 @@
         </visual>
       </link>
     </model>
+
+    <include>
+      <uri>model://Heightmap Bowl</uri>
+      <name>Heightmap Bowl</name>
+      <pose>0 0 0 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://tree_0</uri>
+      <name>tree_0</name>
+      <pose>-5 10 0 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://tree_0</uri>
+      <name>tree_1</name>
+      <pose>5 10 0 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://tree_0</uri>
+      <name>tree_2</name>
+      <pose>10 -5 0 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://tree_0</uri>
+      <name>tree_3</name>
+      <pose>10 5 0 0 -0 0</pose>
+    </include>
+
+       <include>
+      <uri>model://tree_0</uri>
+      <name>tree_4</name>
+      <pose>-10 -5 0 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://tree_0</uri>
+      <name>tree_5</name>
+      <pose>-10 5 0 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://tree_0</uri>
+      <name>tree_6</name>
+      <pose>-5 -10 0 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://tree_0</uri>
+      <name>tree_7</name>
+      <pose>5 -10 0 0 -0 0</pose>
+    </include>
 
   </world>
 </sdf>

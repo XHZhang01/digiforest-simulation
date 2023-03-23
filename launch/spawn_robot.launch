@@ -3,9 +3,9 @@
 
     <arg name="resource_dir" default="$(find digiforest_simulation)/resources" />
     <arg name="verbosity" default="4" />
-    <arg name="robot_name" default="rmf_owl" /> # m100 rmf_owl
+    <arg name="robot_name" default="rmf_owl" /> # m100 rmf_owl x3
     <arg name="robot_type" default="rmf_owl" />
-    <arg name="world_name" default="empty_world" />
+    <arg name="world_name" default="warehouse" />
     <arg name="allow_renaming" default="true" />
     # allows your given name to be overwritten on the spawned model
     <arg name="x" default="0.0" />
@@ -14,9 +14,10 @@
     <arg name="R" default="0.0" />
     <arg name="P" default="0.0" />
     <arg name="Y" default="0.0" />
-    <arg name="robot_file" default="$(find digiforest_simulation)/resources/robots/$(arg robot_type)/model.sdf" />
+    <arg name="robot_file" default="$(find digiforest_simulation)/resources/robots/$(arg robot_type)/integrated_model.sdf" />
 
-
+    <!--rmf_owl-->
+    <!--
     <node pkg="ros_ign_gazebo" type="create" name="spawn_model" args="
             -world $(arg world_name)
             -name $(arg robot_name)
@@ -29,9 +30,50 @@
         <env name="IGN_GAZEBO_RESOURCE_PATH" value="$(arg resource_dir)" />
     </node>
 
-    <include file="$(find digiforest_simulation)/launch/topics.launch">
+    <include file="$(find digiforest_simulation)/launch/robot_topics.launch">
         <arg name="robot_name" value="$(arg robot_name)" />
         <arg name="robot_type" value="$(arg robot_type)" />
+        <arg name="world_name" value="$(arg world_name)" />
+    </include>
+    -->
+
+    <!--realsense_d435-->
+    <!--
+    <node pkg="ros_ign_gazebo" type="create" name="spawn_model" args="
+            -world $(arg world_name)
+            -name realsense
+            -allow_renaming $(arg allow_renaming)
+            -file $(arg robot_file)
+            -x $(arg x) -y $(arg y) -z $(arg z)
+            -R $(arg R) -P $(arg P) -Y $(arg Y)
+            ">
+        <env name="IGN_GAZEBO_MODEL_PATH" value="$(arg resource_dir)" />
+        <env name="IGN_GAZEBO_RESOURCE_PATH" value="$(arg resource_dir)" />
+    </node>
+
+    <include file="$(find digiforest_simulation)/launch/test_topics.launch">
+        <arg name="robot_name" value="realsense" />
+        <arg name="robot_type" value="realsense" />
+        <arg name="world_name" value="$(arg world_name)" />
+    </include>
+    -->
+
+    <!--realsense on rmf_owl-->
+    <node pkg="ros_ign_gazebo" type="create" name="spawn_model" args="
+            -world $(arg world_name)
+            -name rmf_owl
+            -allow_renaming $(arg allow_renaming)
+            -file $(arg robot_file)
+            -x $(arg x) -y $(arg y) -z $(arg z)
+            -R $(arg R) -P $(arg P) -Y $(arg Y)
+            ">
+        <env name="IGN_GAZEBO_MODEL_PATH" value="$(arg resource_dir)" />
+        <env name="IGN_GAZEBO_RESOURCE_PATH" value="$(arg resource_dir)" />
+    </node>
+
+    <include file="$(find digiforest_simulation)/launch/integrated_topics.launch">
+        <arg name="robot_name" value="rmf_owl" />
+        <arg name="robot_type" value="rmf_owl" />
         <arg name="world_name" value="$(arg world_name)" />
     </include>
 

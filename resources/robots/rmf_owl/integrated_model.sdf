@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
     <model name="rmf_owl">
-        <pose>0 0 0.121078 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
 
         <frame name="rmf_owl" attached_to='base_link'>
             <pose>0 0 0 0 0 0</pose>
@@ -40,8 +40,18 @@
                 </geometry>
             </visual>
 
+            <!--Outlook of realsense_d435i/d455-->
+            <collision name="realsense_visual">
+                <pose frame="">0.0285 0 0.0328 0 -0 1.57</pose>
+                <geometry>
+                    <mesh>
+                        <scale>1 1 1</scale>
+                        <uri>meshes/realsense.dae</uri>
+                    </mesh>
+                </geometry>
+            </collision>
             <visual name="realsense_visual">
-                <pose frame="">0.028 0 0.0328 0 -0 1.57</pose>
+                <pose frame="">0.04 0 0.036 0 -0 1.57</pose>
                 <geometry>
                     <mesh>
                         <scale>1 1 1</scale>
@@ -50,136 +60,123 @@
                 </geometry>
             </visual>
 
+            <!--IMU of realsense-->
             <sensor name="imu_sensor" type="imu">
+                <!--<pose>0.0 0.0 0.0 1.5708 0 1.5708</pose>-->
+                <pose>0.0 0.0 0.0 0 0 0</pose>
                 <always_on>1</always_on>
                 <update_rate>200</update_rate>
                 <imu>
+                    <!--              
+                    <orientation_reference_frame>
+                        <localization>WUN</localization>
+                        <custom_rpy parent_frame="rmf_owl">1.5708 0 1.5708</custom_rpy>
+                        <gravity_dir_x parent_frame="rmf_owl">1 0 0</gravity_dir_x>
+                    </orientation_reference_frame>
+                    -->                    
+                    <!--
+                        <mean> and <std> are parameters of Gaussian noise
+                        <bias_mean> and <bias_stddev> are parameters of Gaussian bias
+                        <dynamic_bias_stddev> and <dynamic_bias_correlation_time> are parameters of noise, which drives slow derivation of sensor bias
+                        <precision> is the precision of Gaussian quantized output signal
+                    -->
                     <angular_velocity>
                         <x>
                             <noise type="gaussian">
                                 <mean>0</mean>
-                                <stddev>0.009</stddev>
-                                <bias_mean>0.00075</bias_mean>
-                                <bias_stddev>0.005</bias_stddev>
-                                <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+                                <stddev>0.00</stddev>
+                                <bias_mean>0.00</bias_mean>
+                                <bias_stddev>0.00</bias_stddev>
+                                <dynamic_bias_stddev>0.00</dynamic_bias_stddev>
                                 <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
-                                <precision>0.00025</precision>
+                                <precision>0.00</precision>
                             </noise>
                         </x>
                         <y>
                             <noise type="gaussian">
                                 <mean>0</mean>
-                                <stddev>0.009</stddev>
-                                <bias_mean>0.00075</bias_mean>
-                                <bias_stddev>0.005</bias_stddev>
-                                <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+                                <stddev>0.00</stddev>
+                                <bias_mean>0.00</bias_mean>
+                                <bias_stddev>0.00</bias_stddev>
+                                <dynamic_bias_stddev>0.00</dynamic_bias_stddev>
                                 <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
-                                <precision>0.00025</precision>
+                                <precision>0.00</precision>
                             </noise>
                         </y>
                         <z>
                             <noise type="gaussian">
                                 <mean>0</mean>
-                                <stddev>0.009</stddev>
-                                <bias_mean>0.00075</bias_mean>
-                                <bias_stddev>0.005</bias_stddev>
-                                <dynamic_bias_stddev>0.00002</dynamic_bias_stddev>
+                                <stddev>0.00</stddev>
+                                <bias_mean>0.00</bias_mean>
+                                <bias_stddev>0.00</bias_stddev>
+                                <dynamic_bias_stddev>0.00</dynamic_bias_stddev>
                                 <dynamic_bias_correlation_time>400.0</dynamic_bias_correlation_time>
-                                <precision>0.00025</precision>
+                                <precision>0.00</precision>
                             </noise>
                         </z>
                     </angular_velocity>
                     <linear_acceleration>
                         <x>
                             <noise type="gaussian">
-                                <mean>0</mean>
-                                <stddev>0.021</stddev>
-                                <bias_mean>0.05</bias_mean>
-                                <bias_stddev>0.0075</bias_stddev>
-                                <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+                                <mean>0.0</mean>
+                                <stddev>0.00</stddev>
+                                <bias_mean>0.0</bias_mean>
+                                <bias_stddev>0.00</bias_stddev>
+                                <dynamic_bias_stddev>0.00</dynamic_bias_stddev>
                                 <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
-                                <precision>0.005</precision>
+                                <precision>0.00</precision>
                             </noise>
                         </x>
                         <y>
                             <noise type="gaussian">
-                                <mean>0</mean>
-                                <stddev>0.021</stddev>
-                                <bias_mean>0.05</bias_mean>
-                                <bias_stddev>0.0075</bias_stddev>
-                                <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+                                <mean>0.0</mean>
+                                <stddev>0.00</stddev>
+                                <bias_mean>0.0</bias_mean>
+                                <bias_stddev>0.00</bias_stddev>
+                                <dynamic_bias_stddev>0.00</dynamic_bias_stddev>
                                 <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
-                                <precision>0.005</precision>
+                                <precision>0.00</precision>
                             </noise>
                         </y>
                         <z>
                             <noise type="gaussian">
-                                <mean>0</mean>
-                                <stddev>0.021</stddev>
-                                <bias_mean>0.05</bias_mean>
-                                <bias_stddev>0.0075</bias_stddev>
-                                <dynamic_bias_stddev>0.000375</dynamic_bias_stddev>
+                                <mean>0.0</mean>
+                                <stddev>0.00</stddev>
+                                <bias_mean>0.0</bias_mean>
+                                <bias_stddev>0.00</bias_stddev>
+                                <dynamic_bias_stddev>0.00</dynamic_bias_stddev>
                                 <dynamic_bias_correlation_time>175.0</dynamic_bias_correlation_time>
-                                <precision>0.005</precision>
+                                <precision>0.00</precision>
                             </noise>
                         </z>
                     </linear_acceleration>
                 </imu>
             </sensor>
 
-            <!--
-            <sensor name="air_pressure" type="air_pressure">
-                <always_on>1</always_on>
-                <update_rate>20</update_rate>
-                <air_pressure>
-                    <reference_altitude>0</reference_altitude>
-                    <noise type="gaussian">
-                        <mean>0.00000008</mean>
-                    </noise>
-                </air_pressure>
-            </sensor>
-            -->
-            <!--
-            <sensor name="magnetometer" type="magnetometer">
-                <always_on>1</always_on>
-                <update_rate>20</update_rate>
-                <magnetometer>
-                    <x>
-                        <noise type="gaussian">
-                            <mean>0.000000080</mean>
-                            <bias_mean>0.000000400</bias_mean>
-                        </noise>
-                    </x>
-                    <y>
-                        <noise type="gaussian">
-                            <mean>0.000000080</mean>
-                            <bias_mean>0.000000400</bias_mean>
-                        </noise>
-                    </y>
-                    <z>
-                        <noise type="gaussian">
-                            <mean>0.000000080</mean>
-                            <bias_mean>0.000000400</bias_mean>
-                        </noise>
-                    </z>
-                </magnetometer>
-            </sensor>
-            -->
-
+            <!--Left camera of realsense-->
             <sensor name="camera_left" type="camera">
-                <pose>1.250 0 -0.025 0 0.785398 0</pose>
+                <!--<pose>0.18 0 0.0328 0 -0 0</pose>--> <!--realsense's postion on rmf_owl-->
+                <!--<pose>0.0074000000 -0.0302200001 0.0160200000 0 -0 0</pose>--> <!--realsense's pose from config file-->
+                <!--<pose>0.1874000000 -0.0302200001 0.0488200000 0 -0 0</pose>--> <!--integration of both-->
+                <pose>0.2 0.0475 0.2 0 0 0</pose>
+                <!--<pose>0.0 0.4 0.2 0 0 0</pose>-->
+                <!--<pose>0.0 0.5 0.0 -1.5708 0 -1.5708</pose>-->
                 <always_on>1</always_on>
-                <update_rate>90</update_rate>
+                <update_rate>15</update_rate>
                 <visualize>true</visualize>
                 <camera name="camera_left">
-                    <horizontal_fov>2.0944</horizontal_fov>
+                    <!--
+                        calculation of horizontal_fov:
+                        h_fov = 2*tan-1(width/(2*fx))
+                    -->
+                    <horizontal_fov>1.37274</horizontal_fov>
                     <lens>
                         <intrinsics>
-                            <fx>1108.952913</fx>
-                            <fy>1110.658360</fy>
-                            <cx>729.533992</cx>
-                            <cy>544.985715</cy>
-                            <s>1</s>
+                            <fx>390.598938</fx>
+                            <fy>390.598938</fy>
+                            <cx>320.581665</cx>
+                            <cy>237.712845</cy>
+                            <s>0</s>
                         </intrinsics>
                     </lens>
                     <distortion>
@@ -191,14 +188,16 @@
                         <center>0.5 0.5</center>
                     </distortion>
                     <image>
-                        <width>960</width>
-                        <height>540</height>
-                        <format>R8G8B8</format>
+                        <width>640</width>
+                        <height>480</height>
+                        <format>L8</format>
                     </image>
+                    <!--
                     <clip>
                         <near>0.02</near>
                         <far>20</far>
                     </clip>
+                    -->
                     <noise>
                         <type>gaussian</type>
                         <mean>0</mean>
@@ -207,20 +206,30 @@
                 </camera>
             </sensor>
 
+            <!--Right camera of realsense-->
             <sensor name="camera_right" type="camera">
-                <pose>-1.250 0 -0.025 0 0.785398 0</pose>
+                <!--<pose>0.18 0 0.0328 0 -0 0</pose>--> <!--realsense's postion on rmf_owl-->
+                <!--<pose>0.0074000000 0.0646901205 0.0160200000 0 -0 0</pose>--> <!--realsense's pose from config file-->
+                <!--<pose>0.1874000000 0.0646901205 0.0488200000 0 -0 0</pose>--> <!--integration of both-->
+                <pose>0.2 -0.0475 0.2 0 0 0</pose>
+                <!--<pose>0.0 -0.4 0.2 0 0 0</pose>-->
+                <!--<pose>0.0 -0.5 0.0 -1.5708 0 -1.5708</pose>-->
                 <always_on>1</always_on>
-                <update_rate>90</update_rate>
+                <update_rate>15</update_rate>
                 <visualize>true</visualize>
                 <camera name="camera_right">
-                    <horizontal_fov>2.0944</horizontal_fov>
+                    <!--
+                        calculation of horizontal_fov:
+                        h_fov = 2*tan-1(width/(2*fx))
+                    -->
+                    <horizontal_fov>1.37274</horizontal_fov>
                     <lens>
                         <intrinsics>
-                            <fx>1108.952913</fx>
-                            <fy>1110.658360</fy>
-                            <cx>729.533992</cx>
-                            <cy>544.985715</cy>
-                            <s>1</s>
+                            <fx>390.598938</fx>
+                            <fy>390.598938</fy>
+                            <cx>320.581665</cx>
+                            <cy>237.712845</cy>
+                            <s>0</s>
                         </intrinsics>
                     </lens>
                     <distortion>
@@ -232,14 +241,16 @@
                         <center>0.5 0.5</center>
                     </distortion>
                     <image>
-                        <width>960</width>
-                        <height>540</height>
-                        <format>R8G8B8</format>
+                        <width>640</width>
+                        <height>480</height>
+                        <format>L8</format>
                     </image>
+                    <!--
                     <clip>
                         <near>0.02</near>
                         <far>20</far>
                     </clip>
+                    -->
                     <noise>
                         <type>gaussian</type>
                         <mean>0</mean>
@@ -248,12 +259,14 @@
                 </camera>
             </sensor>
 
-            <sensor name="camera_front" type="camera">
-                <pose>0.180 0 -0.025 0 0.785398 0</pose>
+            <!--RGBD camera of realsense-->
+            
+            <sensor name="camera_RGBD" type="camera">
+                <pose>0.18 0 0.0328 0 -0 0</pose>
                 <always_on>1</always_on>
-                <update_rate>20</update_rate>
+                <update_rate>15</update_rate>
                 <visualize>true</visualize>
-                <camera name="camera_front">
+                <camera name="camera_RGBD">
                     <horizontal_fov>2.0944</horizontal_fov>
                     <lens>
                         <intrinsics>
@@ -288,13 +301,13 @@
                     </noise>
                 </camera>
             </sensor>
-            <sensor name="depth_camera1" type="depth_camera">
-                <update_rate>20</update_rate>
-                <pose>0.180 0 -0.025 0 0 0</pose>
-                <!-- <topic>depth_camera</topic> -->
-                <camera name="depth_camera1">
+            
+            
+            <sensor name="depth_RGBD" type="depth_camera">
+                <update_rate>15</update_rate>
+                <pose>0.18 0 0.0328 0 -0 0</pose>
+                <camera name="depth_RGBD">
                     <horizontal_fov>2.09</horizontal_fov>
-                    <!-- <horizontal_fov>2.09</horizontal_fov> -->
                     <image>
                         <width>160</width>
                         <height>60</height>
@@ -311,6 +324,35 @@
                     </noise>
                 </camera>
             </sensor>
+            
+
+            <!--RGBD test-->
+            <!--
+            <sensor name="RGBD_test" type="rgbd_camera">
+                <update_rate>20</update_rate>
+                <pose>0 0 -0.025 0 0 0</pose>
+                <camera name="RGBD_test">
+                    <horizontal_fov>2.09</horizontal_fov>
+                    <image>
+                        <width>160</width>
+                        <height>60</height>
+                        <format>R_FLOAT32</format>
+                    </image>
+                    <clip>
+                        <near>0.2</near>
+                        <far>20.0</far>
+                    </clip>
+                    <noise>
+                        <type>gaussian</type>
+                        <mean>0</mean>
+                        <stddev>0.00000000000000000001</stddev>
+                    </noise>
+                </camera>
+            </sensor>
+            -->
+
+            <!--Outlook of LiDAR-->
+            <!--
             <visual name="laser_visual">
                 <pose>0 0 0.05 0 0 0</pose>
                 <geometry>
@@ -320,10 +362,11 @@
                     </cylinder>
                 </geometry>
             </visual>
+            -->
+
+            <!--LiDAR-->
+            <!--
             <sensor name="front_laser" type="gpu_ray">
-                <!-- The laser is patterned off of the X1 medium range lidar.  
-					We believe this is based on a Velodyne Puck Lite 
-					which weighs 590 g -->
                 <pose>0 0 0.05 0 0 0</pose>
                 <update_rate>10</update_rate>
                 <visualize>true</visualize>
@@ -355,8 +398,9 @@
                     </noise>
                 </lidar>
             </sensor>
-
+            -->
         </link>
+
         <link name="rotor_0">
             <pose frame="">0.09 -0.09 -0.005 0 0 0</pose>
             <inertial>
@@ -764,7 +808,8 @@
             <!-- linearVelocityNoiseStdDev based on error values reported in the paper Shen et. al., -->
             <!-- Vision-Based State Estimation and Trajectory Control Towards High-Speed Flight with a Quadrotor -->
             <!-- http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.490.7958&rep=rep1&type=pdf -->
-            <linearVelocityNoiseStdDev>0.1105 0.1261 0.0947</linearVelocityNoiseStdDev>
+            <!--<linearVelocityNoiseStdDev>0.1105 0.1261 0.0947</linearVelocityNoiseStdDev>-->
+            <linearVelocityNoiseStdDev>0.01 0.01 0.01</linearVelocityNoiseStdDev>
             <angularVelocityNoiseMean>0 0 0</angularVelocityNoiseMean>
             <!-- angularVelocityNoiseStdDev values based on ADIS16448's Rate Noise Density with a sample  -->
             <!-- time of 0.004 ms. -->

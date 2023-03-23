@@ -25,6 +25,7 @@
       <name>Heightmap Bowl</name>
       <pose>0 0 0 0 -0 0</pose>
     </include>
+
     <include>
       <uri>model://tree_0</uri>
       <name>tree_30</name>

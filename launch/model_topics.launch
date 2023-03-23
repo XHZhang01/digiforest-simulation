@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="world_name" default="field"/>
+  <arg name="model_name" default="realsense"/>
+  <arg name="model_type" default="realsense"/>
+  <arg name="link_name" value="link"/>
+  <arg name="sensor_prefix" value="/world/$(arg world_name)/model/$(arg model_name)/link/$(arg link_name)/sensor"/>
+  
+  <node
+    pkg="ros_ign_bridge"
+    type="parameter_bridge"
+    name="ros_ign_bridge_clock"
+    args="/clock@rosgraph_msgs/Clock[ignition.msgs.Clock">
+  </node>
+  
+  <group ns="$(arg model_name)">
+    <!--Create multipe bridges so that it can run in parallel-->
+
+    <!--Teleop-->
+    <!--
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_twist"
+      args="/model/$(arg model_name)/cmd_vel@geometry_msgs/Twist@ignition.msgs.Twist">
+      <remap from="/model/$(arg model_name)/cmd_vel" to="cmd_vel"/>
+    </node>
+    -->
+
+    <!--IMU-->
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_imu"
+      args="$(arg sensor_prefix)/imu_sensor/imu@sensor_msgs/Imu[ignition.msgs.IMU">
+      <remap from="$(arg sensor_prefix)/imu_sensor/imu" to="imu/data"/>
+    </node>
+
+    <!--Monocular camera -->
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_camera"
+      args="$(arg sensor_prefix)/monocular/camera_info@sensor_msgs/CameraInfo[ignition.msgs.CameraInfo">
+      <remap from="$(arg sensor_prefix)/monocular/camera_info" to="mono/camera_info"/>
+    </node>
+
+    <node
+      pkg="ros_ign_image"
+      type="image_bridge"
+      name="ros_ign_image_camera"
+      args="$(arg sensor_prefix)/monocular/image">
+      <remap from="$(arg sensor_prefix)/monocular/image" to="mono/image_raw"/>
+    </node>
+
+    <!--Front RGBD camera -->
+    <!--
+    <node
+      pkg="ros_ign_bridge"
+      type="parameter_bridge"
+      name="ros_ign_bridge_camera"
+      args="$(arg sensor_prefix)/rgbd_sensor/camera_info@sensor_msgs/CameraInfo[ignition.msgs.CameraInfo">
+      <remap from="$(arg sensor_prefix)/rgbd_sensor/camera_info" to="rgbd_camera/camera_info"/>
+    </node>
+    <node
+      pkg="ros_ign_image"
+      type="image_bridge"
+      name="ros_ign_image_camera"
+      args="$(arg sensor_prefix)/rgbd_sensor/image">
+      <remap from="$(arg sensor_prefix)/rgbd_sensor/image" to="rgbd_camera/image_raw"/>
+    </node>
+    -->
+
+  </group>
+</launch>
